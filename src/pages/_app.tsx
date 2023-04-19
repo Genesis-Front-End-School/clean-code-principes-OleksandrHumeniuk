@@ -18,7 +18,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const loadToken = useCallback(async () => {
-    await AuthService.getToken();
+    await AuthService.getAndSaveToken();
     setIsLoaded(true);
   }, []);
 
