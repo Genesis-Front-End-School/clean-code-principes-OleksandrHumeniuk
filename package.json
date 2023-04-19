@@ -32,5 +32,10 @@
     "react-query": "^3.39.3",
     "sass": "^1.59.3",
     "typescript": "5.0.2"
+  },
+  "devDependencies": {
+    "stylelint": "^15.5.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^8.0.0"
   }
 }

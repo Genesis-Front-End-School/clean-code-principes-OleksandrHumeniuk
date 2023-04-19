@@ -2,6 +2,7 @@
 
 .content{
   @include flex-center;
+
   flex-direction: column;
   gap: 15px;
   margin-top: 10px;
@@ -19,7 +20,7 @@
   max-width: 750px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (width <= 800px) {
   .gridWrapper{
     @include flex-center;
   }
