@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { PreviewCourse } from '@/types/common/course';
+
+import type { PreviewCourse } from '@/types/common/course';
 
 const usePagination = (
   pageSize: number,

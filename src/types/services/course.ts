@@ -1,4 +1,4 @@
-import { Course, PreviewCourse } from '@/types/common/course';
+import type { Course, PreviewCourse } from '@/types/common/course';
 
 export interface GetCoursesResponse {
   courses: PreviewCourse[];

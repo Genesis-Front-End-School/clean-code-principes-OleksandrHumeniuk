@@ -1,6 +1,6 @@
 import instance from '@/services/instance';
-import { GetTokenResponse } from '@/types/services/auth';
 import { LOCAL_STORAGE_KEYS } from '@/types/common/local-storage';
+import type { GetTokenResponse } from '@/types/services/auth';
 
 class Auth {
   getToken = async (): Promise<GetTokenResponse> => {

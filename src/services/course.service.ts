@@ -1,6 +1,9 @@
 import instance from '@/services/instance';
-import { GetCourseResponse, GetCoursesResponse } from '@/types/services/course';
 import getAuthorizationHeader from '@/services/utils';
+import type {
+  GetCourseResponse,
+  GetCoursesResponse,
+} from '@/types/services/course';
 
 class Course {
   getCourses = async (): Promise<GetCoursesResponse> => {

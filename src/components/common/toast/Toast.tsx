@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Alert, Snackbar } from '@mui/material';
 
 import useAppSelector from '@/hooks/useAppSelector';
 import { hideToast } from '@/redux/reducers/toast.reducer';
+
 import styles from './Toast.module.scss';
+
 const Toast: FC = () => {
   const { open, message, status } = useAppSelector(state => state.toast);
   const dispatch = useDispatch();

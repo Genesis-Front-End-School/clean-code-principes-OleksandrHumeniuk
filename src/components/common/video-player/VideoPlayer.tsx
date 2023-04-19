@@ -1,9 +1,12 @@
-import React, { FC, useEffect, useRef } from 'react';
-import Hls from 'hls.js';
+import type { FC } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { Box } from '@mui/material';
+import Hls from 'hls.js';
+
 import { showToast } from '@/redux/reducers/toast.reducer';
 import { TOAST_STATUS } from '@/types/redux/toast';
-import { Box } from '@mui/material';
+
 interface VideoPlayerProps {
   src: string;
   className: string;

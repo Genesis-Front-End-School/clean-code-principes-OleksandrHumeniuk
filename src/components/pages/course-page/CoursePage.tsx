@@ -1,25 +1,26 @@
-import React, { FC, useMemo, useState } from 'react';
-
-import { Box, Divider, List, Rating, Typography } from '@mui/material';
+import type { FC } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
-import CourseService from '@/services/course.service';
-import Loader from '@/components/common/loader';
-import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 import {
   AccessTime,
   CalendarToday,
   CastForEducation,
   Check,
 } from '@mui/icons-material';
+import { Box, Divider, List, Rating, Typography } from '@mui/material';
+import { useRouter } from 'next/router';
+
+import Loader from '@/components/common/loader';
+import Tag from '@/components/common/tag';
+import IconField from '@/components/pages/course-page/components/icon-field';
 import Lesson from '@/components/pages/course-page/components/lesson/Lesson';
+import { showToast } from '@/redux/reducers/toast.reducer';
+import CourseService from '@/services/course.service';
+import { TOAST_STATUS } from '@/types/redux/toast';
 import { parseCourseCover, parseDate, parseTime, sortLessons } from '@/utils';
 
 import styles from './CoursePage.module.scss';
-import Tag from '@/components/common/tag';
-import IconField from '@/components/pages/course-page/components/icon-field';
-import { showToast } from '@/redux/reducers/toast.reducer';
-import { TOAST_STATUS } from '@/types/redux/toast';
-import { useDispatch } from 'react-redux';
 
 const CoursesPage: FC = () => {
   const { query, push } = useRouter();

@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import type { FC } from 'react';
+import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { Box, Grid, Pagination, Typography } from '@mui/material';
+
+import Loader from '@/components/common/loader';
+import CourseCard from '@/components/pages/courses-page/components/course-card';
+import usePagination from '@/hooks/usePagination';
+import { showToast } from '@/redux/reducers/toast.reducer';
+import CourseService from '@/services/course.service';
+import { TOAST_STATUS } from '@/types/redux/toast';
 
 import styles from './CoursesPage.module.scss';
-import { Box, Grid, Pagination, Typography } from '@mui/material';
-import { useQuery } from 'react-query';
-import CourseService from '@/services/course.service';
-import CourseCard from '@/components/pages/courses-page/components/course-card';
-import Loader from '@/components/common/loader';
-import usePagination from '@/hooks/usePagination';
-import { useDispatch } from 'react-redux';
-import { showToast } from '@/redux/reducers/toast.reducer';
-import { TOAST_STATUS } from '@/types/redux/toast';
 
 const CoursesPage: FC = () => {
   const { data, isLoading } = useQuery(
