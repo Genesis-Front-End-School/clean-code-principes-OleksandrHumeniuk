@@ -1,11 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import type { PreviewCourse } from '@/types/common/course';
-
-const usePagination = (
-  pageSize: number,
-  courses: PreviewCourse[] | undefined,
-) => {
+const usePagination = <T>(pageSize: number, courses: T[] | undefined) => {
   const [pagination, setPagination] = useState({
     count: 0,
     from: 0,
@@ -17,23 +12,23 @@ const usePagination = (
     [courses, pagination],
   );
 
-  const [value, setValue] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const count = useMemo(
     () => Math.ceil((courses?.length || 0) / pageSize),
     [courses?.length, pageSize],
   );
 
-  const handlePageChange = (event: any, page: any) => {
+  const handlePageChange = (event: any, page: number) => {
     const from = (page - 1) * pageSize;
     const to = (page - 1) * pageSize + pageSize;
-    setPagination({ ...pagination, from: from, to: to });
-    setValue(page);
+    setPagination({ ...pagination, from, to });
+    setCurrentPage(page);
     window.scrollTo({ top: 0 });
   };
 
   return {
-    currentPage: value,
+    currentPage: currentPage,
     handlePageChange,
     currentCourses,
     count,
