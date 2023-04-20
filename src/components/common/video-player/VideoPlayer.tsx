@@ -23,12 +23,11 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const dispatch = useDispatch();
-  const hls = new Hls();
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
+    const hls = new Hls();
     hls.loadSource(src);
     hls.attachMedia(video);
 
@@ -39,22 +38,23 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
           message: `Use 'h' to slow video and 'j' to speed it up! Right click to open picture-in-picture mode`,
         }),
       );
-      video.currentTime = (localStorage.getItem(src) as any) || 0;
+      video.currentTime = Number(localStorage.getItem(src));
     }
-  }, [dispatch, hls, isAutoPlay, src, videoRef]);
+  }, [isAutoPlay, src]);
 
   const handleTimeUpdate = () => {
-    const video = videoRef.current as any;
-    if (!video) return;
-    localStorage.setItem(src, video.currentTime);
+    if (!videoRef.current) return;
+    localStorage.setItem(src, JSON.stringify(videoRef.current.currentTime));
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLVideoElement>) => {
-    const video = videoRef.current as any;
+    if (!videoRef.current) return;
+
+    const rate = Number(videoRef.current.playbackRate.toFixed(1));
     if (e.key === 'h') {
-      video.playbackRate = Math.max(video.playbackRate - 0.2, 0);
+      videoRef.current.playbackRate = Math.max(rate - 0.2, 0);
     } else if (e.key === 'j') {
-      video.playbackRate = Math.min(video.playbackRate + 0.2, 3);
+      videoRef.current.playbackRate = Math.min(rate + 0.2, 3);
     }
   };
 
