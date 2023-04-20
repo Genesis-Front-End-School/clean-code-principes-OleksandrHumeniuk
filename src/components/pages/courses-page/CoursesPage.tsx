@@ -1,10 +1,10 @@
 import type { FC } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { Box, Grid, Pagination, Typography } from '@mui/material';
+import { Box, Pagination, Typography } from '@mui/material';
 
 import Loader from '@/components/common/loader';
-import CourseCard from '@/components/pages/courses-page/components/course-card';
+import CourseCardList from '@/components/pages/courses-page/components/course-card-list';
 import usePagination from '@/hooks/usePagination';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import CourseService from '@/services/course.service';
@@ -55,21 +55,7 @@ const CoursesPage: FC = () => {
         count={count}
         onChange={handlePageChange}
       />
-      <Grid container spacing={2} className={styles.gridWrapper}>
-        {currentCourses?.map((course, index) => (
-          <Grid
-            key={index}
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            xl={3}
-            className={styles.gridItem}
-          >
-            <CourseCard {...course} />
-          </Grid>
-        ))}
-      </Grid>
+      <CourseCardList courses={currentCourses} />
       <Pagination
         page={currentPage}
         color="primary"

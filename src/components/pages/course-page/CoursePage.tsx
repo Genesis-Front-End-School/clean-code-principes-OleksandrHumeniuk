@@ -1,31 +1,21 @@
 import type { FC } from 'react';
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
-import {
-  AccessTime,
-  CalendarToday,
-  CastForEducation,
-  Check,
-} from '@mui/icons-material';
-import { Box, Divider, List, Rating, Typography } from '@mui/material';
+import { Divider } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import Loader from '@/components/common/loader';
-import Tag from '@/components/common/tag';
-import IconField from '@/components/pages/course-page/components/icon-field';
-import Lesson from '@/components/pages/course-page/components/lesson/Lesson';
+import CourseInfo from '@/components/pages/course-page/components/course-info';
+import LessonList from '@/components/pages/course-page/components/lesson-list';
+import SkillList from '@/components/pages/course-page/components/skill-list';
 import { showToast } from '@/redux/reducers/toast.reducer';
 import CourseService from '@/services/course.service';
 import { TOAST_STATUS } from '@/types/redux/toast';
-import { parseCourseCover, parseDate, parseTime, sortLessons } from '@/utils';
-
-import styles from './CoursePage.module.scss';
 
 const CoursesPage: FC = () => {
   const { query, push } = useRouter();
   const dispatch = useDispatch();
-  const [openedLesson, setOpenedLesson] = useState('');
   const courseId = query.courseId as string;
 
   const { data: course, isLoading } = useQuery(
@@ -33,16 +23,6 @@ const CoursesPage: FC = () => {
     () => CourseService.getCourse(courseId),
     { refetchOnWindowFocus: false, retry: false },
   );
-
-  const lessonText = useMemo(() => {
-    const lessonsNum = course?.lessons.length;
-    const lockedLessonsNum = course?.lessons.filter(
-      lesson => lesson.status === 'locked',
-    ).length;
-    return `${lessonsNum} lessons ${
-      lockedLessonsNum !== 0 ? `(${lockedLessonsNum} locked)` : ''
-    }`;
-  }, [course]);
 
   if (isLoading) return <Loader />;
 
@@ -58,72 +38,11 @@ const CoursesPage: FC = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <Box className={styles.header}>
-        <Box className={styles.courseInfo}>
-          <Typography variant="h4">{course.title}</Typography>
-          <Box className={styles.courseInfoRow}>
-            {course.tags.map((tag, index) => (
-              <Tag key={index} label={tag} />
-            ))}
-            <Rating
-              readOnly
-              defaultValue={course.rating}
-              className={styles.rating}
-            />
-          </Box>
-          <Typography className={styles.description}>
-            {course.description}
-          </Typography>
-          <Box className={styles.icons}>
-            <IconField
-              label={`Launch date: ${parseDate(course.launchDate)}`}
-              icon={<CalendarToday color="primary" />}
-            />
-            <IconField
-              label={lessonText}
-              icon={<CastForEducation color="primary" />}
-            />
-            <IconField
-              label={parseTime(course.duration)}
-              icon={<AccessTime color="primary" />}
-            />
-          </Box>
-        </Box>
-
-        <Box
-          className={styles.previewImage}
-          component="img"
-          alt="course preview"
-          src={parseCourseCover(course.previewImageLink)}
-        />
-      </Box>
+    <div>
+      <CourseInfo course={course} />
       <Divider />
-      <Box className={styles.skillsWrapper}>
-        <Typography className={styles.skillsHeader}>
-          What will you learn:
-        </Typography>
-        {course?.meta.skills.map((skill, index) => (
-          <Box key={index} className={styles.skill}>
-            <Check color="primary" />
-            <Typography>{skill}</Typography>
-          </Box>
-        ))}
-      </Box>
-      <Typography variant="h6" className={styles.lessonsHeader}>
-        Lessons
-      </Typography>
-      <List className={styles.lessonsWrapper}>
-        {sortLessons(course.lessons).map(lesson => (
-          <Lesson
-            key={lesson.id}
-            value={lesson.id}
-            currentValue={openedLesson}
-            setValue={setOpenedLesson}
-            {...lesson}
-          />
-        ))}
-      </List>
+      <SkillList skills={course.meta.skills} />
+      <LessonList lessons={course.lessons} />
     </div>
   );
 };

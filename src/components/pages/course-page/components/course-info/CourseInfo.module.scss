@@ -1,5 +1,5 @@
-@import 'src/styles/partials/utils';
 @import 'src/styles/partials/colors';
+@import 'src/styles/partials/utils';
 
 .header{
   @include flex-center;
@@ -11,6 +11,12 @@
   margin-bottom: 20px;
 }
 
+.previewImage{
+  max-width: 600px;
+  border-radius: 10px;
+  align-self: center;
+  border: 1px solid $primary;
+}
 
 .courseInfo{
   flex-grow: 1;
@@ -40,44 +46,6 @@
   flex-direction: column;
   gap: 16px;
 }
-
-.previewImage{
-  max-width: 600px;
-  border-radius: 10px;
-  align-self: center;
-  border: 1px solid $primary;
-}
-
-.skillsWrapper{
-  display: flex;
-  margin: 20px 0;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 12px
-}
-
-.skillsHeader{
-  font-weight: 600;
-}
-
-.skill{
-  display: flex;
-  gap: 8px;
-}
-
-.lessonsHeader{
-  margin: 10px 0;
-}
-
-.lessonsWrapper{
-  width: 1200px;
-  max-width: 90vw;
-  border: 1px solid rgb(0 0 0 / 12%);
-  padding: 0;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
 
 @media only screen and (width <= 1000px) {
   .header{
