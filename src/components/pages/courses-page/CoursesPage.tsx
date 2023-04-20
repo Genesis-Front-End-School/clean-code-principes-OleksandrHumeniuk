@@ -1,15 +1,18 @@
-import { FC } from 'react';
+import type { FC } from 'react';
+import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { Box, Pagination, Typography } from '@mui/material';
+
+import Loader from '@/components/common/loader';
+import CourseCardList from '@/components/pages/courses-page/components/course-card-list';
+import usePagination from '@/hooks/usePagination';
+import { showToast } from '@/redux/reducers/toast.reducer';
+import CourseService from '@/services/course.service';
+import { TOAST_STATUS } from '@/types/redux/toast';
 
 import styles from './CoursesPage.module.scss';
-import { Box, Grid, Pagination, Typography } from '@mui/material';
-import { useQuery } from 'react-query';
-import CourseService from '@/services/course.service';
-import CourseCard from '@/components/pages/courses-page/components/course-card';
-import Loader from '@/components/common/loader';
-import usePagination from '@/hooks/usePagination';
-import { useDispatch } from 'react-redux';
-import { showToast } from '@/redux/reducers/toast.reducer';
-import { TOAST_STATUS } from '@/types/redux/toast';
+
+const PAGE_SIZE = 10;
 
 const CoursesPage: FC = () => {
   const { data, isLoading } = useQuery(
@@ -19,13 +22,13 @@ const CoursesPage: FC = () => {
   );
 
   const { currentPage, handlePageChange, currentCourses, count } =
-    usePagination(10, data?.courses);
+    usePagination(PAGE_SIZE, data?.courses);
 
   const dispatch = useDispatch();
 
   if (isLoading) return <Loader />;
 
-  if (!isLoading && !data) {
+  if (!data) {
     dispatch(
       showToast({
         status: TOAST_STATUS.ERROR,
@@ -52,22 +55,7 @@ const CoursesPage: FC = () => {
         count={count}
         onChange={handlePageChange}
       />
-      <Grid container spacing={2} className={styles.gridWrapper}>
-        {currentCourses &&
-          currentCourses.map((course, index) => (
-            <Grid
-              key={index}
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              xl={3}
-              className={styles.gridItem}
-            >
-              <CourseCard {...course} />
-            </Grid>
-          ))}
-      </Grid>
+      <CourseCardList courses={currentCourses} />
       <Pagination
         page={currentPage}
         color="primary"

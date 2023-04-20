@@ -17,7 +17,8 @@
   "plugins": [
     "@typescript-eslint",
     "react",
-    "prettier"
+    "prettier",
+    "simple-import-sort"
   ],
   "settings": {
     "react": {
@@ -25,10 +26,33 @@
     }
   },
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off",
+    "space-before-blocks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/react-in-jsx-scope": "off",
+    "react/self-closing-comp": ["error", { "component": true, "html": true }],
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-function":"off",
+    "@typescript-eslint/consistent-type-imports": [
+       "error",
+       {
+         "prefer": "type-imports"
+       }
+     ],
+    "arrow-body-style": ["error", "as-needed"],
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          ["^(@|components)(/.*|$)"],
+          ["^\\u0000"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^.+\\.?(scss)$"]
+        ]
+      }
+    ],
     "prettier/prettier": [
       "error",
       {

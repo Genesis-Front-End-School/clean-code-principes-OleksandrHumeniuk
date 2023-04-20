@@ -1,10 +1,13 @@
-import instance from '@/services/instance';
-import { GetCourseResponse, GetCoursesResponse } from '@/types/services/course';
+import axiosInstance from '@/services/instance';
 import getAuthorizationHeader from '@/services/utils';
+import type {
+  GetCourseResponse,
+  GetCoursesResponse,
+} from '@/types/services/course';
 
 class Course {
   getCourses = async (): Promise<GetCoursesResponse> => {
-    const res = await instance.get(
+    const res = await axiosInstance.get(
       `/core/preview-courses`,
       getAuthorizationHeader(),
     );
@@ -12,7 +15,7 @@ class Course {
   };
 
   getCourse = async (courseId: string): Promise<GetCourseResponse> => {
-    const res = await instance.get(
+    const res = await axiosInstance.get(
       `/core/preview-courses/${courseId}`,
       getAuthorizationHeader(),
     );

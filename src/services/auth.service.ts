@@ -1,12 +1,12 @@
-import instance from '@/services/instance';
-import { GetTokenResponse } from '@/types/services/auth';
+import axiosInstance from '@/services/instance';
 import { LOCAL_STORAGE_KEYS } from '@/types/common/local-storage';
 
 class Auth {
-  getToken = async (): Promise<GetTokenResponse> => {
-    const res = await instance.get(`/auth/anonymous?platform=subscriptions`);
+  getAndSaveToken = async () => {
+    const res = await axiosInstance.get(
+      `/auth/anonymous?platform=subscriptions`,
+    );
     localStorage.setItem(LOCAL_STORAGE_KEYS.TOKEN, res.data.token);
-    return res.data;
   };
 }
 

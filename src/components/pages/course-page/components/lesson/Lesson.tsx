@@ -1,6 +1,6 @@
-import React, { FC, useMemo } from 'react';
-import { Lesson as LessonInterface } from '@/types/common/course';
-import styles from './Lesson.module.scss';
+import type { FC } from 'react';
+import React from 'react';
+import { ExpandMore, Lock } from '@mui/icons-material';
 import {
   Collapse,
   Divider,
@@ -10,14 +10,17 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import { ExpandMore, Lock } from '@mui/icons-material';
+
 import VideoPlayer from '@/components/common/video-player/VideoPlayer';
+import type { Lesson as LessonInterface } from '@/types/common/course';
 import { parseLessonPoster, parseTime } from '@/utils';
 
+import styles from './Lesson.module.scss';
+
 interface LessonProps extends LessonInterface {
-  value: number;
-  currentValue: number;
-  setValue: (value: number) => void;
+  value: string;
+  currentValue: string;
+  setValue: (value: string) => void;
 }
 
 const Lesson: FC<LessonProps> = ({
@@ -26,12 +29,12 @@ const Lesson: FC<LessonProps> = ({
   setValue,
   ...lesson
 }) => {
-  const isOpen = useMemo(() => value === currentValue, [value, currentValue]);
-  const isLocked = useMemo(() => lesson.status === 'locked', [lesson.status]);
+  const isOpen = value === currentValue;
+  const isLocked = lesson.status === 'locked';
+  const ListIcon = isLocked ? Lock : ExpandMore;
 
-  const ListIcon = useMemo(() => (isLocked ? Lock : ExpandMore), [isLocked]);
   const handleClick = () => {
-    setValue(isOpen ? -1 : value);
+    setValue(isOpen ? '' : value);
   };
 
   return (

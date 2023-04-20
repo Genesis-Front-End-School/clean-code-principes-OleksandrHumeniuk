@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
-
-import styles from './CourseCard.module.scss';
+import type { FC } from 'react';
+import React, { useState } from 'react';
+import { East } from '@mui/icons-material';
 import {
   Avatar,
   Box,
@@ -8,16 +8,18 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Rating,
-  Link,
-  Typography,
   IconButton,
+  Link,
+  Rating,
+  Typography,
 } from '@mui/material';
-import { East } from '@mui/icons-material';
-import { PreviewCourse } from '@/types/common/course';
-import { parseCourseCover, parseDate } from '@/utils';
+
 import Tag from '@/components/common/tag';
 import VideoPlayer from '@/components/common/video-player';
+import type { PreviewCourse } from '@/types/common/course';
+import { parseCourseCover, parseDate } from '@/utils';
+
+import styles from './CourseCard.module.scss';
 
 export type CourseCardProps = PreviewCourse;
 

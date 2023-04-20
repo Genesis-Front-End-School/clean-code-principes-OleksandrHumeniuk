@@ -1,0 +1,16 @@
+.skillsWrapper{
+  display: flex;
+  margin: 20px 0;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px
+}
+
+.skillsHeader{
+  font-weight: 600;
+}
+
+.skill{
+  display: flex;
+  gap: 8px;
+}
