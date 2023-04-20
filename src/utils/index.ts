@@ -15,4 +15,4 @@ export const parseTime = (time: number): string =>
   `${Math.floor(time / 60)} minutes ${time % 60} seconds`;
 
 export const sortLessons = (lessons: Lesson[]): Lesson[] =>
-  lessons.sort((lesson1, lesson2) => lesson1.order - lesson2.order);
+  [...lessons].sort((lesson1, lesson2) => lesson1.order - lesson2.order);
