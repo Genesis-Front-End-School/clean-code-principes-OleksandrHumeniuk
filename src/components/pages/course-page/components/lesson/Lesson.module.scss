@@ -28,8 +28,6 @@
   transition: transform .2s linear;
 
   &Rotated {
-    width: 32px;
-    height: 32px;
     transition: transform .2s linear;
     transform: rotate(180deg);
   }
