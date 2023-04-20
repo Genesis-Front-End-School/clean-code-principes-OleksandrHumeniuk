@@ -12,6 +12,8 @@ import { TOAST_STATUS } from '@/types/redux/toast';
 
 import styles from './CoursesPage.module.scss';
 
+const PAGE_SIZE = 10;
+
 const CoursesPage: FC = () => {
   const { data, isLoading } = useQuery(
     'courses',
@@ -20,13 +22,13 @@ const CoursesPage: FC = () => {
   );
 
   const { currentPage, handlePageChange, currentCourses, count } =
-    usePagination(10, data?.courses);
+    usePagination(PAGE_SIZE, data?.courses);
 
   const dispatch = useDispatch();
 
   if (isLoading) return <Loader />;
 
-  if (!isLoading && !data) {
+  if (!data) {
     dispatch(
       showToast({
         status: TOAST_STATUS.ERROR,
@@ -54,20 +56,19 @@ const CoursesPage: FC = () => {
         onChange={handlePageChange}
       />
       <Grid container spacing={2} className={styles.gridWrapper}>
-        {currentCourses &&
-          currentCourses.map((course, index) => (
-            <Grid
-              key={index}
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              xl={3}
-              className={styles.gridItem}
-            >
-              <CourseCard {...course} />
-            </Grid>
-          ))}
+        {currentCourses?.map((course, index) => (
+          <Grid
+            key={index}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            xl={3}
+            className={styles.gridItem}
+          >
+            <CourseCard {...course} />
+          </Grid>
+        ))}
       </Grid>
       <Pagination
         page={currentPage}

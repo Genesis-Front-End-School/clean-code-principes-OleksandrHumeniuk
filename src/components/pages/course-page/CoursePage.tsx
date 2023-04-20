@@ -24,6 +24,8 @@ import styles from './CoursePage.module.scss';
 
 const CoursesPage: FC = () => {
   const { query, push } = useRouter();
+  const dispatch = useDispatch();
+  const [openedLesson, setOpenedLesson] = useState('');
   const courseId = query.courseId as string;
 
   const { data: course, isLoading } = useQuery(
@@ -34,20 +36,17 @@ const CoursesPage: FC = () => {
 
   const lessonText = useMemo(() => {
     const lessonsNum = course?.lessons.length;
-    const closedLessonsNum = course?.lessons.filter(
+    const lockedLessonsNum = course?.lessons.filter(
       lesson => lesson.status === 'locked',
     ).length;
     return `${lessonsNum} lessons ${
-      closedLessonsNum !== 0 ? `(${closedLessonsNum} locked)` : ''
+      lockedLessonsNum !== 0 ? `(${lockedLessonsNum} locked)` : ''
     }`;
   }, [course]);
 
-  const [openedLesson, setOpenedLesson] = useState(0);
-  const dispatch = useDispatch();
-
   if (isLoading) return <Loader />;
 
-  if (!isLoading && !course) {
+  if (!course) {
     dispatch(
       showToast({
         status: TOAST_STATUS.ERROR,
@@ -100,29 +99,25 @@ const CoursesPage: FC = () => {
         />
       </Box>
       <Divider />
-
-      {course.meta.skills && (
-        <Box className={styles.skillsWrapper}>
-          <Typography className={styles.skillsHeader}>
-            What will you learn:
-          </Typography>
-          {course.meta.skills.map((skill, index) => (
-            <Box key={index} className={styles.skill}>
-              <Check color="primary" />
-              <Typography>{skill}</Typography>
-            </Box>
-          ))}
-        </Box>
-      )}
-
+      <Box className={styles.skillsWrapper}>
+        <Typography className={styles.skillsHeader}>
+          What will you learn:
+        </Typography>
+        {course?.meta.skills.map((skill, index) => (
+          <Box key={index} className={styles.skill}>
+            <Check color="primary" />
+            <Typography>{skill}</Typography>
+          </Box>
+        ))}
+      </Box>
       <Typography variant="h6" className={styles.lessonsHeader}>
         Lessons
       </Typography>
       <List className={styles.lessonsWrapper}>
-        {sortLessons(course.lessons).map((lesson, index) => (
+        {sortLessons(course.lessons).map(lesson => (
           <Lesson
-            key={index}
-            value={index}
+            key={lesson.id}
+            value={lesson.id}
             currentValue={openedLesson}
             setValue={setOpenedLesson}
             {...lesson}
