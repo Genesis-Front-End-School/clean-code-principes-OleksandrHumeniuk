@@ -1,6 +1,6 @@
 import type { Lesson } from '@/types/common/course';
 
-export const parseDate = (dateStr: string) => {
+export const parseDate = (dateStr: string): string => {
   const date = new Date(dateStr);
   return `${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 };

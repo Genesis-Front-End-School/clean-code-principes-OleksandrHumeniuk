@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, SyntheticEvent } from 'react';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Box } from '@mui/material';
@@ -58,10 +58,10 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
     }
   };
 
-  const handleContextMenu = (e: any) => {
+  const handleContextMenu = (e: SyntheticEvent) => {
+    if (!videoRef.current) return;
     e.preventDefault();
-    const video = videoRef.current as any;
-    video.requestPictureInPicture();
+    void videoRef.current.requestPictureInPicture();
   };
 
   if (!src) {

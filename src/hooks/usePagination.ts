@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import { useMemo, useState } from 'react';
 
 const usePagination = <T>(pageSize: number, courses: T[] | undefined) => {
@@ -19,7 +20,7 @@ const usePagination = <T>(pageSize: number, courses: T[] | undefined) => {
     [courses?.length, pageSize],
   );
 
-  const handlePageChange = (event: any, page: number) => {
+  const handlePageChange = (event: ChangeEvent<unknown>, page: number) => {
     const from = (page - 1) * pageSize;
     const to = (page - 1) * pageSize + pageSize;
     setPagination({ ...pagination, from, to });
