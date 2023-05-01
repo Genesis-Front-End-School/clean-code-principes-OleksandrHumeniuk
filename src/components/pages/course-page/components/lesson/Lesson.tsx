@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, SetStateAction } from 'react';
 import React from 'react';
 import { ExpandMore, Lock } from '@mui/icons-material';
 import {
@@ -20,7 +20,7 @@ import styles from './Lesson.module.scss';
 interface LessonProps extends LessonInterface {
   value: string;
   currentValue: string;
-  setValue: (value: string) => void;
+  setValue: React.Dispatch<SetStateAction<string>>;
 }
 
 const Lesson: FC<LessonProps> = ({
