@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { List, Typography } from '@mui/material';
 
 import LessonComponent from '@/components/pages/course-page/components/lesson/Lesson';
-import styles from '@/components/pages/course-page/CoursePage.module.scss';
 import type { Lesson as LessonInterface } from '@/types/common/course';
 import { sortLessons } from '@/utils';
+
+import styles from './LessonList.module.scss';
 
 interface LessonListProps {
   lessons: LessonInterface[] | undefined;
