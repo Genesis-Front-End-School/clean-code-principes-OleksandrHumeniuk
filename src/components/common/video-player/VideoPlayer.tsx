@@ -9,7 +9,7 @@ import { TOAST_STATUS } from '@/types/redux/toast';
 
 interface VideoPlayerProps {
   src: string;
-  className: string;
+  className?: string;
   title: string;
   poster: string;
   isAutoPlay?: boolean;
@@ -47,7 +47,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
     localStorage.setItem(src, JSON.stringify(videoRef.current.currentTime));
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLVideoElement>) => {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLVideoElement>) => {
     if (!videoRef.current) return;
 
     const rate = Number(videoRef.current.playbackRate.toFixed(1));
@@ -95,7 +95,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
       {...rest}
       poster={poster ? poster : '/default.jpg'}
       ref={videoRef}
-      onKeyPress={handleKeyPress}
+      onKeyUp={handleKeyUp}
       onContextMenu={handleContextMenu}
       onTimeUpdate={handleTimeUpdate}
     />
