@@ -1,3 +1,4 @@
+import React from 'react';
 import { Head, Html, Main, NextScript } from 'next/document';
 
 const Document = () => (
@@ -7,6 +8,7 @@ const Document = () => (
         href="https://fonts.googleapis.com/css?family=Nunito:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet"
       />
+      <title>Learnify</title>
       <link rel="icon" href="/favicon.png" />
     </Head>
     <body>
