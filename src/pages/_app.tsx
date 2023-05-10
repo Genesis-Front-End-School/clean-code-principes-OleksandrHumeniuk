@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 
 import Toast from '@/components/common/toast';
+import useLoadToken from '@/hooks/useLoadToken';
 import { wrapper } from '@/redux';
-import AuthService from '@/services/auth.service';
 import theme from '@/styles/theme';
 
 import '@/styles/globals.scss';
@@ -15,32 +14,20 @@ import '@/styles/globals.scss';
 const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { isLoading } = useLoadToken();
 
-  const loadToken = async () => {
-    await AuthService.getAndSaveToken();
-    setIsLoaded(true);
-  };
-
-  useEffect(() => {
-    void loadToken();
-  }, [loadToken]);
+  if (isLoading) return;
 
   return (
-    isLoaded && (
-      <QueryClientProvider client={queryClient}>
-        <Head>
-          <title>Learnify</title>
-        </Head>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Toast />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </QueryClientProvider>
-    )
+    <QueryClientProvider client={queryClient}>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Toast />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </QueryClientProvider>
   );
 };
 

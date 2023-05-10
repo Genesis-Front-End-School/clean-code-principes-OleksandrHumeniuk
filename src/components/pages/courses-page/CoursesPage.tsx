@@ -1,42 +1,23 @@
 import type { FC } from 'react';
-import { useQuery } from 'react-query';
-import { useDispatch } from 'react-redux';
 import { Box, Pagination, Typography } from '@mui/material';
 
 import Loader from '@/components/common/loader';
 import CourseCardList from '@/components/pages/courses-page/components/course-card-list';
+import useGetCourses from '@/hooks/useGetCourses';
 import usePagination from '@/hooks/usePagination';
-import { showToast } from '@/redux/reducers/toast.reducer';
-import CourseService from '@/services/course.service';
-import { TOAST_STATUS } from '@/types/redux/toast';
 
 import styles from './CoursesPage.module.scss';
 
 const PAGE_SIZE = 10;
 
 const CoursesPage: FC = () => {
-  const { data, isLoading } = useQuery(
-    'courses',
-    () => CourseService.getCourses(),
-    { refetchOnWindowFocus: false, retry: false },
-  );
-
+  const { data, isLoading } = useGetCourses();
   const { currentPage, handlePageChange, currentCourses, count } =
     usePagination(PAGE_SIZE, data?.courses);
 
-  const dispatch = useDispatch();
-
   if (isLoading) return <Loader />;
 
-  if (!data) {
-    dispatch(
-      showToast({
-        status: TOAST_STATUS.ERROR,
-        message: 'Error! Try again later!',
-      }),
-    );
-    return <></>;
-  }
+  if (!data) return null;
 
   return (
     <Box className={styles.content}>
