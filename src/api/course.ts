@@ -1,5 +1,5 @@
-import axiosInstance from '@/services/instance';
-import getAuthorizationHeader from '@/services/utils';
+import axiosInstance from '@/api/instance';
+import getAuthorizationHeader from '@/api/utils';
 import type {
   GetCourseResponse,
   GetCoursesResponse,
@@ -23,6 +23,6 @@ class Course {
   };
 }
 
-const CourseService = new Course();
+const CourseAPI = new Course();
 
-export default CourseService;
+export default CourseAPI;

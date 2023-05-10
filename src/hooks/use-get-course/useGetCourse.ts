@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
 
+import CourseAPI from '@/api/course';
 import useToast from '@/hooks/use-toast';
-import CourseService from '@/services/course.service';
 
 const useGetCourse = () => {
   const { query, push } = useRouter();
@@ -12,7 +12,7 @@ const useGetCourse = () => {
 
   const { data, isLoading } = useQuery(
     ['courses', courseId],
-    () => CourseService.getCourse(courseId),
+    () => CourseAPI.getCourse(courseId),
     { refetchOnWindowFocus: false, retry: false },
   );
 

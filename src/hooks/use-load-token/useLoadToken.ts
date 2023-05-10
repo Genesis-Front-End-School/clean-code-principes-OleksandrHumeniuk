@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import AuthService from '@/services/auth.service';
+import AuthAPI from '@/api/auth';
 
 const useLoadToken = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const loadToken = async () => {
-    await AuthService.getAndSaveToken();
+    await AuthAPI.getToken();
     setIsLoading(false);
   };
 
