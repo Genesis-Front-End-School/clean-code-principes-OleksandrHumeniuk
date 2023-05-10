@@ -1,9 +1,8 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { useDispatch } from 'react-redux';
 
-import { showToast } from '@/redux/reducers/toast.reducer';
+import useToast from '@/hooks/use-toast';
 import CourseService from '@/services/course.service';
-import { TOAST_STATUS } from '@/types/redux/toast';
 
 const useGetCourses = () => {
   const { data, isLoading } = useQuery(
@@ -12,16 +11,13 @@ const useGetCourses = () => {
     { refetchOnWindowFocus: false, retry: false },
   );
 
-  const dispatch = useDispatch();
+  const toast = useToast();
 
-  if (!data) {
-    dispatch(
-      showToast({
-        status: TOAST_STATUS.ERROR,
-        message: 'Error! Try again later!',
-      }),
-    );
-  }
+  useEffect(() => {
+    if (!isLoading && !data) {
+      toast.error('Error! Try again later!');
+    }
+  }, [isLoading, data]);
 
   return {
     data,

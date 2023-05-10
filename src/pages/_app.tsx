@@ -4,8 +4,8 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 import type { AppProps } from 'next/app';
 
-import Toast from '@/components/common/toast';
 import useLoadToken from '@/hooks/use-load-token/useLoadToken';
+import ToastContextProvider from '@/hooks/use-toast/toast-context';
 import { wrapper } from '@/redux';
 import theme from '@/styles/theme';
 
@@ -23,8 +23,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Toast />
-          <Component {...pageProps} />
+          <ToastContextProvider>
+            <Component {...pageProps} />
+          </ToastContextProvider>
         </ThemeProvider>
       </StyledEngineProvider>
     </QueryClientProvider>
