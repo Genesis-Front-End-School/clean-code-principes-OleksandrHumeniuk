@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { Alert, Snackbar } from '@mui/material';
 
-import useAppSelector from '@/hooks/useAppSelector';
+import useAppSelector from '@/hooks/use-app-selector/useAppSelector';
 import { hideToast } from '@/redux/reducers/toast.reducer';
 
 import styles from './Toast.module.scss';

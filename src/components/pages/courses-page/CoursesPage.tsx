@@ -3,8 +3,8 @@ import { Box, Pagination, Typography } from '@mui/material';
 
 import Loader from '@/components/common/loader';
 import CourseCardList from '@/components/pages/courses-page/components/course-card-list';
-import useGetCourses from '@/hooks/useGetCourses';
-import usePagination from '@/hooks/usePagination';
+import useGetCourses from '@/hooks/use-get-courses/useGetCourses';
+import usePagination from '@/hooks/use-pagination/usePagination';
 
 import styles from './CoursesPage.module.scss';
 

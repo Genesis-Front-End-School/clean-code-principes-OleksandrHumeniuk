@@ -5,7 +5,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import type { AppProps } from 'next/app';
 
 import Toast from '@/components/common/toast';
-import useLoadToken from '@/hooks/useLoadToken';
+import useLoadToken from '@/hooks/use-load-token/useLoadToken';
 import { wrapper } from '@/redux';
 import theme from '@/styles/theme';
 

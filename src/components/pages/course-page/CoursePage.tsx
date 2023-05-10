@@ -6,7 +6,7 @@ import Loader from '@/components/common/loader';
 import CourseInfo from '@/components/pages/course-page/components/course-info';
 import LessonList from '@/components/pages/course-page/components/lesson-list';
 import SkillList from '@/components/pages/course-page/components/skill-list';
-import useGetCourse from '@/hooks/useGetCourse';
+import useGetCourse from '@/hooks/use-get-course/useGetCourse';
 
 const CoursesPage: FC = () => {
   const { isLoading, data: course } = useGetCourse();
