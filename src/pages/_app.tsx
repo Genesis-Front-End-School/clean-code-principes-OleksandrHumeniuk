@@ -3,10 +3,10 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 
 import useLoadToken from '@/hooks/use-load-token/useLoadToken';
 import ToastContextProvider from '@/hooks/use-toast/toast-context';
-import { wrapper } from '@/redux';
 import theme from '@/styles/theme';
 
 import '@/styles/globals.scss';
@@ -24,6 +24,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <ToastContextProvider>
+            <Head>
+              <title>Learnify</title>
+            </Head>
             <Component {...pageProps} />
           </ToastContextProvider>
         </ThemeProvider>
@@ -32,4 +35,4 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default wrapper.withRedux(App);
+export default App;

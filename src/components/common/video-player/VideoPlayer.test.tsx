@@ -1,18 +1,8 @@
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
 import { fireEvent, render } from '@testing-library/react';
-
-import toastReducer from '@/redux/reducers/toast.reducer';
 
 import '@testing-library/jest-dom';
 
 import VideoPlayer from './VideoPlayer';
-
-export const mockedStore = configureStore({
-  reducer: {
-    toast: toastReducer,
-  },
-});
 
 describe('VideoPlayer', () => {
   const testTitle = 'test title';
@@ -20,11 +10,7 @@ describe('VideoPlayer', () => {
   const testSrc = '/test-src';
 
   it('should render video correctly', () => {
-    render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />
-      </Provider>,
-    );
+    render(<VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />);
     const video = document.querySelector('video');
 
     expect(video).toBeInTheDocument();
@@ -35,9 +21,7 @@ describe('VideoPlayer', () => {
 
   it('should render default poster if poster attribute is null', () => {
     render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={testSrc} title={testTitle} poster={null as any} />
-      </Provider>,
+      <VideoPlayer src={testSrc} title={testTitle} poster={null as any} />,
     );
     const video = document.querySelector('video');
 
@@ -46,9 +30,7 @@ describe('VideoPlayer', () => {
 
   it('should render image if src attribute is null', () => {
     render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={null as any} title={testTitle} poster={testPoster} />
-      </Provider>,
+      <VideoPlayer src={null as any} title={testTitle} poster={testPoster} />,
     );
     const image = document.querySelector('img');
 
@@ -56,11 +38,7 @@ describe('VideoPlayer', () => {
   });
 
   it('should increase playback rate on h key press', () => {
-    render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />
-      </Provider>,
-    );
+    render(<VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />);
     const video = document.querySelector('video') as HTMLVideoElement;
 
     expect(video.playbackRate).toBe(1);
@@ -71,11 +49,7 @@ describe('VideoPlayer', () => {
   });
 
   it('should decrease playback rate on h key press', () => {
-    render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />
-      </Provider>,
-    );
+    render(<VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />);
     const video = document.querySelector('video') as HTMLVideoElement;
 
     expect(video.playbackRate).toBe(1);
@@ -86,11 +60,7 @@ describe('VideoPlayer', () => {
   });
 
   it('should not be higher than max playback rate (3)', () => {
-    render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />
-      </Provider>,
-    );
+    render(<VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />);
     const video = document.querySelector('video') as HTMLVideoElement;
 
     for (let i = 0; i < 10; i++) {
@@ -101,11 +71,7 @@ describe('VideoPlayer', () => {
   });
 
   it('should not be lower than min playback rate (0)', () => {
-    render(
-      <Provider store={mockedStore}>
-        <VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />
-      </Provider>,
-    );
+    render(<VideoPlayer src={testSrc} title={testTitle} poster={testPoster} />);
     const video = document.querySelector('video') as HTMLVideoElement;
 
     for (let i = 0; i < 10; i++) {
