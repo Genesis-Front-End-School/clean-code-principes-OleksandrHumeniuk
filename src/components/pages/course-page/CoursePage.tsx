@@ -9,7 +9,7 @@ import SkillList from '@/components/pages/course-page/components/skill-list';
 import useGetCourse from '@/hooks/use-get-course/useGetCourse';
 
 const CoursesPage: FC = () => {
-  const { isLoading, data: course } = useGetCourse();
+  const { isLoading, course } = useGetCourse();
 
   if (isLoading) return <Loader />;
 
@@ -19,7 +19,7 @@ const CoursesPage: FC = () => {
     <div>
       <CourseInfo course={course} />
       <Divider />
-      <SkillList skills={course.meta.skills} />
+      <SkillList skills={course.skills} />
       <LessonList lessons={course.lessons} />
     </div>
   );

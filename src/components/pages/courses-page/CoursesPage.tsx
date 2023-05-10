@@ -11,13 +11,13 @@ import styles from './CoursesPage.module.scss';
 const PAGE_SIZE = 10;
 
 const CoursesPage: FC = () => {
-  const { data, isLoading } = useGetCourses();
+  const { courses, isLoading } = useGetCourses();
   const { currentPage, handlePageChange, currentCourses, count } =
-    usePagination(PAGE_SIZE, data?.courses);
+    usePagination(PAGE_SIZE, courses);
 
   if (isLoading) return <Loader />;
 
-  if (!data) return null;
+  if (!courses) return null;
 
   return (
     <Box className={styles.content}>

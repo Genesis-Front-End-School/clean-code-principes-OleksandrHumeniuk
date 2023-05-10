@@ -5,11 +5,7 @@ import { Box, Typography } from '@mui/material';
 
 import styles from './SkillList.module.scss';
 
-interface SkillList {
-  skills: string[] | undefined;
-}
-
-const SkillList: FC<SkillList> = ({ skills }) => (
+const SkillList: FC<{ skills: string[] | undefined }> = ({ skills }) => (
   <Box className={styles.skillsWrapper}>
     <Typography className={styles.skillsHeader}>
       What will you learn:

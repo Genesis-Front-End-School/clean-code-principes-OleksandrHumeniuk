@@ -1,9 +1,6 @@
 import axiosInstance from '@/api/instance';
 import getAuthorizationHeader from '@/api/utils';
-import type {
-  GetCourseResponse,
-  GetCoursesResponse,
-} from '@/types/services/course';
+import type { GetCourseResponse, GetCoursesResponse } from '@/types/api/course';
 
 class Course {
   getCourses = async (): Promise<GetCoursesResponse> => {

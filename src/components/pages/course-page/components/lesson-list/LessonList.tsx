@@ -3,16 +3,11 @@ import React, { useState } from 'react';
 import { List, Typography } from '@mui/material';
 
 import LessonComponent from '@/components/pages/course-page/components/lesson/Lesson';
-import type { Lesson as LessonInterface } from '@/types/common/course';
-import { sortLessons } from '@/utils';
+import type { Lesson } from '@/types/services/course';
 
 import styles from './LessonList.module.scss';
 
-interface LessonListProps {
-  lessons: LessonInterface[] | undefined;
-}
-
-const LessonList: FC<LessonListProps> = ({ lessons }) => {
+const LessonList: FC<{ lessons: Lesson[] }> = ({ lessons }) => {
   const [openedLesson, setOpenedLesson] = useState('');
 
   return (
@@ -21,7 +16,7 @@ const LessonList: FC<LessonListProps> = ({ lessons }) => {
         Lessons
       </Typography>
       <List className={styles.lessonsWrapper}>
-        {sortLessons(lessons ?? []).map(lesson => (
+        {lessons.map(lesson => (
           <LessonComponent
             key={lesson.id}
             value={lesson.id}

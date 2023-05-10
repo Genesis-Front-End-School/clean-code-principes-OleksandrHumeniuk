@@ -19,22 +19,13 @@ describe('VideoPlayer', () => {
     expect(video).toHaveAttribute('poster', testPoster);
   });
 
-  it('should render default poster if poster attribute is null', () => {
-    render(
-      <VideoPlayer src={testSrc} title={testTitle} poster={null as any} />,
-    );
-    const video = document.querySelector('video');
-
-    expect(video).toHaveAttribute('poster', '/default.jpg');
-  });
-
   it('should render image if src attribute is null', () => {
     render(
       <VideoPlayer src={null as any} title={testTitle} poster={testPoster} />,
     );
     const image = document.querySelector('img');
 
-    expect(image).toHaveAttribute('src', '/default.jpg');
+    expect(image).toHaveAttribute('src', testPoster);
   });
 
   it('should increase playback rate on h key press', () => {

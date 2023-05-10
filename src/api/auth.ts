@@ -1,5 +1,5 @@
 import axiosInstance from '@/api/instance';
-import type { GetTokenResponse } from '@/types/services/auth';
+import type { GetTokenResponse } from '@/types/api/auth';
 
 class Auth {
   getToken = async (): Promise<GetTokenResponse> => {

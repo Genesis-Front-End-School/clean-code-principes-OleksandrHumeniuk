@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
-import CourseAPI from '@/api/course';
 import useToast from '@/hooks/use-toast';
+import CourseService from '@/services/course';
 
 const useGetCourses = () => {
-  const { data, isLoading } = useQuery(
-    'courses',
-    () => CourseAPI.getCourses(),
-    { refetchOnWindowFocus: false, retry: false },
-  );
+  const { data, isLoading } = useQuery('courses', CourseService.getCourses, {
+    refetchOnWindowFocus: false,
+    retry: false,
+  });
 
   const toast = useToast();
 
@@ -20,7 +19,7 @@ const useGetCourses = () => {
   }, [isLoading, data]);
 
   return {
-    data,
+    courses: data,
     isLoading,
   };
 };

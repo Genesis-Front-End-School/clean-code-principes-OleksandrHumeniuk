@@ -65,7 +65,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
         className={rest.className}
         component="img"
         alt="course preview"
-        src="/default.jpg"
+        src={poster}
       />
     );
   }
@@ -76,7 +76,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
       autoPlay={true}
       muted={true}
       src={src}
-      poster={poster ? poster : '/default.jpg'}
+      poster={poster}
       {...rest}
       ref={videoRef}
     />
@@ -88,7 +88,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
       controls={!isAutoPlay}
       src={src}
       {...rest}
-      poster={poster ? poster : '/default.jpg'}
+      poster={poster}
       ref={videoRef}
       onKeyUp={handleKeyUp}
       onContextMenu={handleContextMenu}
