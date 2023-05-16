@@ -3,7 +3,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 
 import CourseCard from '@/components/pages/courses-page/components/course-card';
-import type { PreviewCourse } from '@/types/common/course';
+import type { PreviewCourse } from '@/types/services/course';
 
 import styles from './CourseCardList.module.scss';
 

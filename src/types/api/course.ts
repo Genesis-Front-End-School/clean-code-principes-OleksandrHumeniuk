@@ -1,4 +1,4 @@
-export interface PreviewCourse {
+interface Course {
   id: string;
   title: string;
   tags: string[];
@@ -21,7 +21,7 @@ export interface PreviewCourse {
   };
 }
 
-export interface Lesson {
+interface Lesson {
   id: string;
   title: string;
   duration: number;
@@ -33,6 +33,10 @@ export interface Lesson {
   meta: null;
 }
 
-export interface Course extends Omit<PreviewCourse, 'lessonsCount'> {
+export interface GetCourseResponse extends Omit<Course, 'lessonsCount'> {
   lessons: Lesson[];
+}
+
+export interface GetCoursesResponse {
+  courses: Course[];
 }

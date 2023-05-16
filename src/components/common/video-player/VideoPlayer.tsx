@@ -1,11 +1,9 @@
 import type { FC, SyntheticEvent } from 'react';
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { Box } from '@mui/material';
 import Hls from 'hls.js';
 
-import { showToast } from '@/redux/reducers/toast.reducer';
-import { TOAST_STATUS } from '@/types/redux/toast';
+import useToast from '@/hooks/use-toast';
 
 interface VideoPlayerProps {
   src: string;
@@ -22,7 +20,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
   ...rest
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const dispatch = useDispatch();
+  const toast = useToast();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -32,11 +30,8 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
     hls.attachMedia(video);
 
     if (!isAutoPlay) {
-      dispatch(
-        showToast({
-          status: TOAST_STATUS.INFO,
-          message: `Use 'h' to slow video and 'j' to speed it up! Right click to open picture-in-picture mode`,
-        }),
+      toast.info(
+        `Use 'h' to slow video and 'j' to speed it up! Right click to open picture-in-picture mode`,
       );
       video.currentTime = Number(localStorage.getItem(src));
     }
@@ -70,7 +65,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
         className={rest.className}
         component="img"
         alt="course preview"
-        src="/default.jpg"
+        src={poster}
       />
     );
   }
@@ -81,7 +76,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
       autoPlay={true}
       muted={true}
       src={src}
-      poster={poster ? poster : '/default.jpg'}
+      poster={poster}
       {...rest}
       ref={videoRef}
     />
@@ -93,7 +88,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
       controls={!isAutoPlay}
       src={src}
       {...rest}
-      poster={poster ? poster : '/default.jpg'}
+      poster={poster}
       ref={videoRef}
       onKeyUp={handleKeyUp}
       onContextMenu={handleContextMenu}

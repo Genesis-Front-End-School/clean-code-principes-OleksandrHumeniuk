@@ -16,8 +16,7 @@ import {
 
 import Tag from '@/components/common/tag';
 import VideoPlayer from '@/components/common/video-player';
-import type { PreviewCourse } from '@/types/common/course';
-import { parseCourseCover, parseDate } from '@/utils';
+import type { PreviewCourse } from '@/types/services/course';
 
 import styles from './CourseCard.module.scss';
 
@@ -51,8 +50,8 @@ const CourseCard: FC<CourseCardProps> = course => {
           {isHover ? (
             <VideoPlayer
               className={styles.video}
-              src={course.meta.courseVideoPreview.link}
-              poster={course.meta.courseVideoPreview.previewImageLink}
+              src={course.video}
+              poster={course.videoPoster}
               title={course.title}
               isAutoPlay={true}
             />
@@ -61,7 +60,7 @@ const CourseCard: FC<CourseCardProps> = course => {
               className={styles.picture}
               component="img"
               alt="course preview"
-              src={parseCourseCover(course.previewImageLink)}
+              src={course.image}
             />
           )}
         </CardMedia>
@@ -71,7 +70,7 @@ const CourseCard: FC<CourseCardProps> = course => {
               <Tag key={index} label={tag} />
             ))}
             <Typography color="primary" className={styles.date}>
-              {parseDate(course.launchDate)}
+              {course.launchDate}
             </Typography>
           </Box>
           <Typography className={styles.title} variant="h6">

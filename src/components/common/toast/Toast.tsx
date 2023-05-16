@@ -1,40 +1,40 @@
 import type { FC } from 'react';
-import { useDispatch } from 'react-redux';
 import { Alert, Snackbar } from '@mui/material';
-
-import useAppSelector from '@/hooks/useAppSelector';
-import { hideToast } from '@/redux/reducers/toast.reducer';
 
 import styles from './Toast.module.scss';
 
-const Toast: FC = () => {
-  const { open, message, status } = useAppSelector(state => state.toast);
-  const dispatch = useDispatch();
+export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
-  const handleClose = () => {
-    dispatch(hideToast());
-  };
+interface ToastProps {
+  open: boolean;
+  onClose: () => void;
+  message: string;
+  type: ToastType;
+}
 
-  return (
-    <Snackbar
-      open={open}
-      autoHideDuration={10000}
-      onClose={handleClose}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
+const AUTO_HIDE_DURATION = 10000;
+
+const Toast: FC<ToastProps> = ({ open, onClose, message, type }) => (
+  <Snackbar
+    key={message + type}
+    open={open}
+    ClickAwayListenerProps={{ onClickAway: () => null }}
+    autoHideDuration={AUTO_HIDE_DURATION}
+    onClose={onClose}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+  >
+    <Alert
+      severity={type}
+      onClose={onClose}
+      variant="filled"
+      className={styles.toast}
     >
-      <Alert
-        severity={status}
-        onClose={handleClose}
-        variant="filled"
-        className={styles.alert}
-      >
-        {message}
-      </Alert>
-    </Snackbar>
-  );
-};
+      {message}
+    </Alert>
+  </Snackbar>
+);
 
 export default Toast;
