@@ -32,16 +32,18 @@ const CoursesPage: FC = () => {
       </Typography>
       <Pagination
         page={currentPage}
-        color="primary"
         count={count}
         onChange={handlePageChange}
+        className={styles.pagination}
+        color="primary"
       />
       <CourseCardList courses={currentCourses} />
       <Pagination
         page={currentPage}
-        color="primary"
         count={count}
         onChange={handlePageChange}
+        className={styles.pagination}
+        color="primary"
       />
     </Box>
   );

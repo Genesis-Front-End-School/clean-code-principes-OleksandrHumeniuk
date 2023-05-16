@@ -1,3 +1,10 @@
+.content{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-color);
+}
+
 .logo{
   color: #F8FAF9;
   text-decoration: none;
@@ -6,8 +13,21 @@
   font-family: Ubuntu, sans-serif;
 }
 
-.content{
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.switch{
+  position: absolute;
+  right: 0;
+
+  span {
+    color: #F8FAF9;
+  }
+}
+
+@media only screen and (width <= 600px) {
+  .content{
+    justify-content: space-between;
+  }
+
+  .switch{
+    position: relative;
+  }
 }
