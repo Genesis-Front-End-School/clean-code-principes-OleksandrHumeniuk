@@ -1,0 +1,33 @@
+.content{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-color);
+}
+
+.logo{
+  color: #F8FAF9;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-family: Ubuntu, sans-serif;
+}
+
+.switch{
+  position: absolute;
+  right: 0;
+
+  span {
+    color: #F8FAF9;
+  }
+}
+
+@media only screen and (width <= 600px) {
+  .content{
+    justify-content: space-between;
+  }
+
+  .switch{
+    position: relative;
+  }
+}

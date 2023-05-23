@@ -1,0 +1,64 @@
+@import 'src/styles/partials/colors';
+@import 'src/styles/partials/utils';
+
+.header{
+  @include flex-center;
+
+  gap: 50px;
+  width: 1200px;
+  max-width: 90vw;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.previewImage{
+  max-width: 600px;
+  border-radius: 10px;
+  align-self: center;
+  border: 1px solid $primary;
+}
+
+.courseInfo{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.courseInfoRow{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.rating{
+  color: $primary;
+  height: fit-content;
+}
+
+.description{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.icons{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media only screen and (width <= 1000px) {
+  .header{
+    flex-direction: column;
+  }
+
+  .previewImage{
+    max-width: 100%;
+    order: 1;
+  }
+
+  .courseInfo{
+    order: 2;
+  }
+
+}

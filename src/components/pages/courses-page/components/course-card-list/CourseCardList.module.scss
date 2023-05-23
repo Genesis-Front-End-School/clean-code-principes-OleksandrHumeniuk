@@ -1,0 +1,13 @@
+@import 'src/styles/partials/utils';
+
+@media only screen and (width <= 800px) {
+  .gridWrapper{
+    @include flex-center;
+  }
+}
+
+.gridItem{
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+}

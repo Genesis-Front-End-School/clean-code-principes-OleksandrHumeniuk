@@ -1,0 +1,22 @@
+$primary: #519799;
+$background-primary: #F8FAF9;
+$background-secondary: #F0F4F5;
+$background-tertiary: #C7E5E7;
+
+:root:has(#theme-switch){
+  --page-background: #F8FAF9;
+  --text-color: #121212;
+  --card-background: #FFFF;
+  --primary-color: #519799;
+  --secondary-color: #F0F4F5;
+  --tertirary-color: #C7E5E7;
+}
+
+:root:has(#theme-switch:checked){
+  --page-background: #121212;
+  --text-color: #FFFF;
+  --card-background: #282828;
+  --primary-color: #284B4C;
+  --secondary-color: #284B4C;
+  --tertirary-color: #637273;
+}
