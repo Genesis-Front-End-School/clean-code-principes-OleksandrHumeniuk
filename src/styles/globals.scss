@@ -10,4 +10,13 @@ body {
 
 * {
   box-sizing: border-box;
+  color: var(--text-color);
+}
+
+.MuiButtonBase-root{
+  color: var(--text-color);
+}
+
+.MuiSwitch-thumb{
+  color: var(--page-background) !important;
 }

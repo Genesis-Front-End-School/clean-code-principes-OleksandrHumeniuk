@@ -9,6 +9,7 @@ import useLoadToken from '@/hooks/use-load-token/useLoadToken';
 import ToastContextProvider from '@/hooks/use-toast/toast-context';
 import theme from '@/styles/theme';
 
+import '@/styles/theme.scss';
 import '@/styles/globals.scss';
 
 const queryClient = new QueryClient();

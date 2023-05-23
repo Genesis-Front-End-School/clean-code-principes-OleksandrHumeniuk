@@ -10,15 +10,17 @@
 }
 
 .header{
-  background: $background-secondary;
+  background: var(--secondary-color);
   width: 100%;
 
   &:hover{
-    background: #D0E3DC;
+    background: var(--secondary-color);
+    filter: brightness(85%)
   }
 
   &:active{
-    background: #B4D9CC;
+    background: var(--secondary-color);
+    filter: brightness(70%)
   }
 }
 

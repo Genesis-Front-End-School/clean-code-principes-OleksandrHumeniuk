@@ -19,3 +19,9 @@
   margin-bottom: 20px;
   max-width: 750px;
 }
+
+.pagination{
+  .MuiButtonBase-root{
+    color: var(--text-color) !important;
+  }
+}
