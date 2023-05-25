@@ -1,8 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
-import { Divider } from '@mui/material';
+import { Divider, Loader } from '@OleksandrHumeniuk/genesis-ui-library';
 
-import Loader from '@/components/common/loader';
 import CourseInfo from '@/components/pages/course-page/components/course-info';
 import LessonList from '@/components/pages/course-page/components/lesson-list';
 import SkillList from '@/components/pages/course-page/components/skill-list';

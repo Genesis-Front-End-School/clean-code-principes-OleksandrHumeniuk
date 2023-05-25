@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { List, Typography } from '@mui/material';
+import { List, Text } from '@OleksandrHumeniuk/genesis-ui-library';
 
 import LessonComponent from '@/components/pages/course-page/components/lesson/Lesson';
 import type { Lesson } from '@/types/services/course';
@@ -12,9 +12,9 @@ const LessonList: FC<{ lessons: Lesson[] }> = ({ lessons }) => {
 
   return (
     <>
-      <Typography variant="h6" className={styles.lessonsHeader}>
+      <Text variant="h6" className={styles.lessonsHeader}>
         Lessons
-      </Typography>
+      </Text>
       <List className={styles.lessonsWrapper}>
         {lessons.map(lesson => (
           <LessonComponent

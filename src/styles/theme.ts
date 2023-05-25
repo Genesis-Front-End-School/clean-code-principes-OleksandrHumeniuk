@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@OleksandrHumeniuk/genesis-ui-library';
 
 const theme = createTheme({
   typography: {

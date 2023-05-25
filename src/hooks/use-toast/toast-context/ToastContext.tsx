@@ -1,8 +1,7 @@
 import type { FC, PropsWithChildren } from 'react';
 import React, { useState } from 'react';
-
-import type { ToastType } from '@/components/common/toast/Toast';
-import Toast from '@/components/common/toast/Toast';
+import { Toast } from '@OleksandrHumeniuk/genesis-ui-library';
+import type { ToastType } from '@OleksandrHumeniuk/genesis-ui-library/dist/cjs/types/custom/Toast/Toast';
 
 interface OptionsType {
   open: boolean;

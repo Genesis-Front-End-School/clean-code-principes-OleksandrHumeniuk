@@ -1,7 +1,11 @@
 import type { FC } from 'react';
-import { Box, Pagination, Typography } from '@mui/material';
+import {
+  CoolDiv,
+  Loader,
+  Pagination,
+  Text,
+} from '@OleksandrHumeniuk/genesis-ui-library';
 
-import Loader from '@/components/common/loader';
 import CourseCardList from '@/components/pages/courses-page/components/course-card-list';
 import useGetCourses from '@/hooks/use-get-courses/useGetCourses';
 import usePagination from '@/hooks/use-pagination/usePagination';
@@ -20,16 +24,16 @@ const CoursesPage: FC = () => {
   if (!courses) return null;
 
   return (
-    <Box className={styles.content}>
-      <Typography variant="h2" className={styles.header}>
+    <CoolDiv className={styles.content}>
+      <Text variant="h2" className={styles.header}>
         Featured Courses
-      </Typography>
-      <Typography className={styles.description}>
+      </Text>
+      <Text className={styles.description}>
         Empower yourself with our dynamic online courses. Genesis team has
         experienced instructors, like Oleksandr Humeniuk, that will guide you
         through each step of your learning journey, helping you to achieve your
         goals and unleash your full potential.
-      </Typography>
+      </Text>
       <Pagination
         page={currentPage}
         count={count}
@@ -45,7 +49,7 @@ const CoursesPage: FC = () => {
         className={styles.pagination}
         color="primary"
       />
-    </Box>
+    </CoolDiv>
   );
 };
 
