@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Grid } from '@OleksandrHumeniuk/genesis-ui-library';
 
 import CourseCard from '@/components/pages/courses-page/components/course-card';
 import type { PreviewCourse } from '@/types/services/course';

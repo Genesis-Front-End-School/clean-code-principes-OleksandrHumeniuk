@@ -1,16 +1,14 @@
 import type { FC, PropsWithChildren } from 'react';
 import React from 'react';
-import { Box } from '@mui/material';
-
-import Header from '@/components/common/header';
+import { CoolDiv, Header } from '@OleksandrHumeniuk/genesis-ui-library';
 
 import styles from './Page.module.scss';
 
 const Page: FC<PropsWithChildren<object>> = ({ children }) => (
-  <Box className={styles.wrapper}>
+  <CoolDiv className={styles.wrapper}>
     <Header />
-    <Box className={styles.content}>{children}</Box>
-  </Box>
+    <CoolDiv className={styles.content}>{children}</CoolDiv>
+  </CoolDiv>
 );
 
 export default Page;

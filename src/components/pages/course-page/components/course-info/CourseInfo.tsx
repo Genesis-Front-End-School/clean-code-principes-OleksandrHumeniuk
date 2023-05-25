@@ -4,33 +4,33 @@ import {
   AccessTime,
   CalendarToday,
   CastForEducation,
-} from '@mui/icons-material';
-import { Box, Rating, Typography } from '@mui/material';
+  CoolDiv,
+  Stars,
+  Tag,
+  Text,
+} from '@OleksandrHumeniuk/genesis-ui-library';
 
-import Tag from '@/components/common/tag';
 import IconField from '@/components/pages/course-page/components/icon-field';
 import type { Course } from '@/types/services/course';
 
 import styles from './CourseInfo.module.scss';
 
 const CourseInfo: FC<{ course: Course }> = ({ course }) => (
-  <Box className={styles.header}>
-    <Box className={styles.courseInfo}>
-      <Typography variant="h4">{course.title}</Typography>
-      <Box className={styles.courseInfoRow}>
+  <CoolDiv className={styles.header}>
+    <CoolDiv className={styles.courseInfo}>
+      <Text variant="h4">{course.title}</Text>
+      <CoolDiv className={styles.courseInfoRow}>
         {course.tags.map((tag, index) => (
           <Tag key={index} label={tag} />
         ))}
-        <Rating
+        <Stars
           readOnly
           defaultValue={course.rating}
           className={styles.rating}
         />
-      </Box>
-      <Typography className={styles.description}>
-        {course.description}
-      </Typography>
-      <Box className={styles.icons}>
+      </CoolDiv>
+      <Text className={styles.description}>{course.description}</Text>
+      <CoolDiv className={styles.icons}>
         <IconField
           label={`Launch date: ${course.launchDate}`}
           icon={<CalendarToday color="primary" />}
@@ -43,15 +43,15 @@ const CourseInfo: FC<{ course: Course }> = ({ course }) => (
           label={course.duration}
           icon={<AccessTime color="primary" />}
         />
-      </Box>
-      <Box
+      </CoolDiv>
+      <CoolDiv
         className={styles.previewImage}
         component="img"
         alt="course preview"
         src={course.image}
       />
-    </Box>
-  </Box>
+    </CoolDiv>
+  </CoolDiv>
 );
 
 export default CourseInfo;

@@ -1,17 +1,18 @@
 import type { FC, SetStateAction } from 'react';
 import React from 'react';
-import { ExpandMore, Lock } from '@mui/icons-material';
 import {
   Collapse,
   Divider,
+  ExpandMore,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography,
-} from '@mui/material';
+  Lock,
+  Text,
+  VideoPlayer,
+} from '@OleksandrHumeniuk/genesis-ui-library';
 
-import VideoPlayer from '@/components/common/video-player/VideoPlayer';
 import type { Lesson as LessonInterface } from '@/types/services/course';
 
 import styles from './Lesson.module.scss';
@@ -46,10 +47,10 @@ const Lesson: FC<LessonProps> = ({
           <ListIcon className={isOpen ? styles.iconRotated : styles.icon} />
         </ListItemIcon>
         <ListItemText className={styles.text}>
-          <Typography className={styles.title}>
+          <Text className={styles.title}>
             {`Lesson ${lesson.order}: ${lesson.title}`}
-          </Typography>
-          <Typography>{lesson.duration}</Typography>
+          </Text>
+          <Text>{lesson.duration}</Text>
         </ListItemText>
       </ListItemButton>
       <Divider className={styles.divider} />

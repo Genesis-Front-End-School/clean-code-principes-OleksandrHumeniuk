@@ -1,7 +1,10 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { StyledEngineProvider } from '@mui/material/styles';
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  ThemeProvider,
+} from '@OleksandrHumeniuk/genesis-ui-library';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 

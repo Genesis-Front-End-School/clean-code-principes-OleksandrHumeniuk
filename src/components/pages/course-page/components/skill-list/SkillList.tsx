@@ -1,22 +1,19 @@
 import type { FC } from 'react';
 import React from 'react';
-import { Check } from '@mui/icons-material';
-import { Box, Typography } from '@mui/material';
+import { Check, CoolDiv, Text } from '@OleksandrHumeniuk/genesis-ui-library';
 
 import styles from './SkillList.module.scss';
 
 const SkillList: FC<{ skills: string[] | undefined }> = ({ skills }) => (
-  <Box className={styles.skillsWrapper}>
-    <Typography className={styles.skillsHeader}>
-      What will you learn:
-    </Typography>
+  <CoolDiv className={styles.skillsWrapper}>
+    <Text className={styles.skillsHeader}>What will you learn:</Text>
     {skills?.map((skill, index) => (
-      <Box key={index} className={styles.skill}>
+      <CoolDiv key={index} className={styles.skill}>
         <Check color="primary" />
-        <Typography>{skill}</Typography>
-      </Box>
+        <Text>{skill}</Text>
+      </CoolDiv>
     ))}
-  </Box>
+  </CoolDiv>
 );
 
 export default SkillList;

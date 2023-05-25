@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import React from 'react';
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, CoolDiv, Text } from '@OleksandrHumeniuk/genesis-ui-library';
 
 import styles from './IconField.module.scss';
 
@@ -10,10 +10,10 @@ interface IconFieldProps {
 }
 
 const IconField: FC<IconFieldProps> = ({ label, icon }) => (
-  <Box className={styles.wrapper}>
+  <CoolDiv className={styles.wrapper}>
     <Avatar className={styles.avatar}>{icon}</Avatar>
-    <Typography className={styles.label}>{label}</Typography>
-  </Box>
+    <Text className={styles.label}>{label}</Text>
+  </CoolDiv>
 );
 
 export default IconField;
